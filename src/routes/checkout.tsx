@@ -26,7 +26,7 @@ function Checkout() {
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     const missing = FIELDS.filter(([k]) => !f[k]?.trim()).map(([k]) => k as string);
-    if (f.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email)) missing.push("email");
+    if (f["email"] && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f["email"])) missing.push("email");
     setErrs(missing); if (missing.length || !lines.length) return;
     setOrder({ id: "VLT-" + Math.random().toString(36).slice(2, 8).toUpperCase(), total: t.total }); clearCart();
   };
@@ -44,7 +44,7 @@ function Checkout() {
           ))}</div>
           <h2 className="mt-12 text-2xl">Payment method (demo)</h2>
           <div className="mt-6 grid gap-3 md:grid-cols-3">{[["card", "Credit card"], ["paypal", "PayPal"], ["cod", "Cash on delivery"]].map(([v, l]) => (
-            <button type="button" key={v} onClick={() => setPay(v)} className={`border p-5 text-left text-sm ${pay === v ? "border-foreground bg-card" : "border-border"}`}>{l}</button>
+            <button type="button" key={v} onClick={() => setPay(v!)} className={`border p-5 text-left text-sm ${pay === v ? "border-foreground bg-card" : "border-border"}`}>{l}</button>
           ))}</div>
         </div>
         <aside className="h-fit bg-card p-8">

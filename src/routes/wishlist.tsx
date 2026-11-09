@@ -20,7 +20,7 @@ function Wishlist() {
               <div className="relative"><Link to="/product/$id" params={{ id: p.id }}><img src={p.images[0]} alt={p.name} className="aspect-[3/4] w-full object-cover" /></Link>
                 <button aria-label="Remove" onClick={() => toggleWishlist(p.id)} className="absolute right-3 top-3 grid h-8 w-8 place-items-center rounded-full glass"><X className="h-4 w-4" /></button></div>
               <p className="mt-3 font-display text-lg">{p.name}</p><p className="text-sm">{money(p.price)}</p>
-              <button onClick={() => { addToCart(p.id, p.sizes[2], p.colors[0].name); toggleWishlist(p.id); }} className="eyebrow mt-3 w-full border border-foreground py-3 hover:bg-primary hover:text-primary-foreground">Move to bag</button>
+              <button onClick={() => { addToCart(p.id, p.sizes[2]!, p.colors[0]!.name); toggleWishlist(p.id); }} className="eyebrow mt-3 w-full border border-foreground py-3 hover:bg-primary hover:text-primary-foreground">Move to bag</button>
             </div>
           ))}</div>
         )}

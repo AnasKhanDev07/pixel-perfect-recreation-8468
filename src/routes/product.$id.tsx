@@ -17,10 +17,10 @@ function ProductPage() {
   const p = Route.useLoaderData();
   const { addToCart, toggleWishlist, wishlist, addRecent, recent } = useStore();
   const navigate = useNavigate();
-  const [img, setImg] = useState(0); const [color, setColor] = useState(p.colors[0].name); const [size, setSize] = useState("");
+  const [img, setImg] = useState(0); const [color, setColor] = useState(p.colors[0]!.name); const [size, setSize] = useState("");
   const [qty, setQty] = useState(1); const [guide, setGuide] = useState(false); const [zoom, setZoom] = useState<{ x: number; y: number } | null>(null);
   const [spin, setSpin] = useState(false); const [err, setErr] = useState(false);
-  useEffect(() => { addRecent(p.id); setImg(0); setSize(""); setQty(1); setColor(p.colors[0].name); window.scrollTo(0, 0); }, [p.id]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { addRecent(p.id); setImg(0); setSize(""); setQty(1); setColor(p.colors[0]!.name); window.scrollTo(0, 0); }, [p.id]); // eslint-disable-line react-hooks/exhaustive-deps
   const off = Math.round((1 - p.price / p.originalPrice) * 100);
   const add = (buy?: boolean) => { if (!size) { setErr(true); return; } addToCart(p.id, size, color, qty); if (buy) navigate({ to: "/checkout" }); };
   const related = products.filter((x) => x.category === p.category && x.id !== p.id).concat(products.filter((x) => x.fit === p.fit && x.category !== p.category)).slice(0, 4);
@@ -33,7 +33,7 @@ function ProductPage() {
           <div className="relative order-1 aspect-[3/4] cursor-zoom-in overflow-hidden bg-card [perspective:1200px] md:order-2"
             onMouseMove={(e) => { const r = e.currentTarget.getBoundingClientRect(); setZoom({ x: ((e.clientX - r.left) / r.width) * 100, y: ((e.clientY - r.top) / r.height) * 100 }); }} onMouseLeave={() => setZoom(null)}>
             <AnimatePresence mode="wait">
-              <motion.img key={img} src={p.images[img]} alt={p.name} initial={{ opacity: 0, rotateY: -25 }} animate={spin ? { opacity: 1, rotateY: [0, 360] } : { opacity: 1, rotateY: 0 }} exit={{ opacity: 0, rotateY: 25 }}
+              <motion.img key={img} src={p.images[img]!} alt={p.name} initial={{ opacity: 0, rotateY: -25 }} animate={spin ? { opacity: 1, rotateY: [0, 360] } : { opacity: 1, rotateY: 0 }} exit={{ opacity: 0, rotateY: 25 }}
                 transition={spin ? { duration: 2.4, ease: "easeInOut" } : { duration: 0.6 }} onAnimationComplete={() => setSpin(false)}
                 className="h-full w-full object-cover transition-transform duration-200" style={zoom ? { transform: "scale(2)", transformOrigin: `${zoom.x}% ${zoom.y}%` } : undefined} />
             </AnimatePresence>

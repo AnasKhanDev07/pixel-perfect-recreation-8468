@@ -59,7 +59,7 @@ const raw: [string, Category, number, number, string, string[], Product["fit"], 
 const alt = [look1, look2, wide, formal, linen, chinos];
 export const products: Product[] = raw.map(([name, category, price, originalPrice, img, colors, fit, material, badge, isNew, trending], i) => ({
   id: name.toLowerCase().replace(/[^a-z]+/g, "-"),
-  name, category, price, originalPrice, fit, material, badge, isNew, trending,
+  name, category, price, originalPrice, fit, material, ...(badge ? { badge } : {}), ...(isNew ? { isNew } : {}), ...(trending ? { trending } : {}),
   description: `The ${name} is cut in our ${fit.toLowerCase()} silhouette from ${material.toLowerCase()}. Designed in our atelier with a refined rise, clean hem and hand-finished details — a modern essential built to be worn for years.`,
   images: [img, alt[i % alt.length]!, alt[(i + 2) % alt.length]!],
   sizes: S, colors: colors.map((c) => C[c as keyof typeof C]),

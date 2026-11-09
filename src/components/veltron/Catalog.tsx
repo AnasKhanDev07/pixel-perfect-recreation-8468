@@ -6,7 +6,7 @@ import { ProductCard } from "./ProductCard";
 import { QuickView } from "./QuickView";
 
 const FITS = ["Slim", "Straight", "Relaxed", "Baggy", "Wide", "Tapered"];
-export function Catalog({ items, initialCat, query }: { items: Product[]; initialCat?: string; query?: string }) {
+export function Catalog({ items, initialCat, query }: { items: Product[]; initialCat?: string | undefined; query?: string | undefined }) {
   const cats = [...new Set(items.map((p) => p.category))];
   const colors = [...new Map(items.flatMap((p) => p.colors).map((c) => [c.name, c])).values()];
   const [cat, setCat] = useState<string[]>(initialCat ? [initialCat] : []);
