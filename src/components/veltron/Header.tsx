@@ -69,7 +69,7 @@ export function Header() {
             className="fixed inset-0 z-50 flex flex-col bg-ink p-8 text-ink-foreground">
             <button aria-label="Close menu" onClick={() => setOpen(false)} className="self-end"><X /></button>
             <nav className="mt-10 flex flex-col gap-4">
-              {[{ to: "/", label: "Home" }, { to: "/categories", label: "Categories" }, ...nav, { to: "/wishlist", label: "Wishlist" }, { to: "/cart", label: "Bag" }].map((n, i) => (
+              {([{ to: "/", label: "Home" }, { to: "/categories", label: "Categories" }, ...nav, { to: "/wishlist", label: "Wishlist" }, { to: "/cart", label: "Bag" }] as const).map((n, i) => (
                 <motion.div key={n.to} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 + i * 0.05 }}>
                   <Link to={n.to} className="font-display text-4xl">{n.label}</Link>
                 </motion.div>

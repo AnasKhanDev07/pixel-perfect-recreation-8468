@@ -23,6 +23,6 @@ export function Footer() {
     </footer>
   );
 }
-function Col({ title, links }: { title: string; links: [string, string][] }) {
+function Col({ title, links }: { title: string; links: ["/shop" | "/new-arrivals" | "/lookbook" | "/categories" | "/contact" | "/about" | "/cart" | "/wishlist", string][] }) {
   return <div><p className="eyebrow opacity-60">{title}</p><ul className="mt-5 space-y-2 text-sm">{links.map(([to, l]) => <li key={to}><Link to={to} className="opacity-80 hover:opacity-100">{l}</Link></li>)}</ul></div>;
 }
