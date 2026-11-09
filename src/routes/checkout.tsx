@@ -6,7 +6,7 @@ import { money, useStore } from "@/context/store";
 import { totals } from "@/lib/pricing";
 import { Summary, useCartLines } from "@/components/veltron/CartBits";
 export const Route = createFileRoute("/checkout")({
-  validateSearch: (s: Record<string, unknown>): { code?: string } => ({ code: typeof s.code === "string" ? s.code : undefined }),
+  validateSearch: (s: Record<string, unknown>): { code?: string | undefined } => ({ code: typeof s["code"] === "string" ? s["code"] : undefined }),
   head: () => ({ meta: [{ title: "Checkout (Demo) — VELTRON" }, { name: "description", content: "Demo checkout for the VELTRON store. No real payments are processed." }, { property: "og:title", content: "Checkout — VELTRON" }, { property: "og:description", content: "Demo checkout." }, { name: "robots", content: "noindex" }] }),
   component: Checkout,
 });

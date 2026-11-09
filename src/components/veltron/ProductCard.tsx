@@ -26,7 +26,7 @@ export function ProductCard({ p, onQuick }: { p: Product; onQuick?: (p: Product)
           <Heart className={`h-4 w-4 ${saved ? "fill-foreground" : ""}`} />
         </button>
         <div className="absolute inset-x-3 bottom-3 flex translate-y-4 gap-2 opacity-0 transition duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-          <button onClick={() => addToCart(p.id, p.sizes[2], p.colors[0].name)} className="eyebrow flex flex-1 items-center justify-center gap-1 bg-primary py-3 text-[0.6rem] text-primary-foreground">
+          <button onClick={() => addToCart(p.id, p.sizes[2]!, p.colors[0]!.name)} className="eyebrow flex flex-1 items-center justify-center gap-1 bg-primary py-3 text-[0.6rem] text-primary-foreground">
             <Plus className="h-3 w-3" /> Add
           </button>
           {onQuick && <button onClick={() => onQuick(p)} className="eyebrow flex-1 glass py-3 text-[0.6rem] text-foreground">Quick view</button>}

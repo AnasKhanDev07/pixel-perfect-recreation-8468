@@ -61,7 +61,7 @@ export const products: Product[] = raw.map(([name, category, price, originalPric
   id: name.toLowerCase().replace(/[^a-z]+/g, "-"),
   name, category, price, originalPrice, fit, material, badge, isNew, trending,
   description: `The ${name} is cut in our ${fit.toLowerCase()} silhouette from ${material.toLowerCase()}. Designed in our atelier with a refined rise, clean hem and hand-finished details — a modern essential built to be worn for years.`,
-  images: [img, alt[i % alt.length], alt[(i + 2) % alt.length]],
+  images: [img, alt[i % alt.length]!, alt[(i + 2) % alt.length]!],
   sizes: S, colors: colors.map((c) => C[c as keyof typeof C]),
   rating: 4.4 + ((i * 7) % 6) / 10,
 }));

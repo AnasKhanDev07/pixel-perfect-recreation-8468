@@ -19,7 +19,7 @@ export function QuickView({ p, onClose }: { p: Product | null; onClose: () => vo
             <p className="mt-3 text-lg">{money(p.price)}</p>
             <p className="mt-4 text-sm text-muted-foreground">{p.description}</p>
             <div className="mt-6 flex flex-wrap gap-2">{p.sizes.map((s) => <button key={s} onClick={() => setSize(s)} className={`h-10 w-12 border text-sm ${size === s ? "border-foreground bg-primary text-primary-foreground" : "border-border"}`}>{s}</button>)}</div>
-            <button disabled={!size} onClick={() => { addToCart(p.id, size, p.colors[0].name); onClose(); }} className="eyebrow mt-6 w-full bg-primary py-4 text-primary-foreground disabled:opacity-40">{size ? "Add to bag" : "Select a size"}</button>
+            <button disabled={!size} onClick={() => { addToCart(p.id, size, p.colors[0]!.name); onClose(); }} className="eyebrow mt-6 w-full bg-primary py-4 text-primary-foreground disabled:opacity-40">{size ? "Add to bag" : "Select a size"}</button>
             <Link to="/product/$id" params={{ id: p.id }} className="eyebrow mt-4 block text-center underline">Full details</Link>
           </div>
         </motion.div>

@@ -1,7 +1,7 @@
 import { motion, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
 import { useRef, type ReactNode } from "react";
 
-export function Reveal({ children, delay = 0, className }: { children: ReactNode; delay?: number; className?: string }) {
+export function Reveal({ children, delay = 0, className }: { children: ReactNode; delay?: number; className?: string | undefined }) {
   const reduce = useReducedMotion();
   return (
     <motion.div className={className} initial={reduce ? false : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
@@ -37,7 +37,7 @@ export function Magnetic({ children, className }: { children: ReactNode; classNa
   );
 }
 
-export function SectionHeading({ eyebrow, title, className }: { eyebrow: string; title: string; className?: string }) {
+export function SectionHeading({ eyebrow, title, className }: { eyebrow: string; title: string; className?: string | undefined }) {
   return (
     <Reveal className={className}>
       <p className="eyebrow text-muted-foreground">{eyebrow}</p>
