@@ -27,15 +27,15 @@ export function Header() {
   return (
     <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${overHero ? "" : "glass border-b border-border"}`} onMouseLeave={() => setMega(false)}>
       <div className={`mx-auto flex h-20 max-w-[1600px] items-center justify-between px-6 md:px-10 ${tone}`}>
-        <button className="lg:hidden" aria-label="Open menu" onClick={() => setOpen(true)}><Menu /></button>
+        <button className="2xl:hidden" aria-label="Open menu" onClick={() => setOpen(true)}><Menu /></button>
         <nav className="hidden items-center gap-8 lg:flex">
           <Link to="/" className="eyebrow hover:opacity-60">Home</Link>
           <button className="eyebrow hover:opacity-60" onMouseEnter={() => setMega(true)} onClick={() => setMega((m) => !m)}>Categories</button>
-          {nav.slice(0, 3).map((n) => <Link key={n.to} to={n.to} className="eyebrow hover:opacity-60">{n.label}</Link>)}
+          {nav.slice(0, 3).map((n, i) => <Link key={n.to} to={n.to} className={`eyebrow hover:opacity-60 ${i ? "hidden 2xl:block" : ""}`}>{n.label}</Link>)}
         </nav>
         <Link to="/" className="absolute left-1/2 -translate-x-1/2 font-display text-2xl tracking-[0.45em] md:text-3xl">VELTRON</Link>
         <div className="flex items-center gap-5">
-          {nav.slice(3).map((n) => <Link key={n.to} to={n.to} className="eyebrow hidden hover:opacity-60 xl:block">{n.label}</Link>)}
+          {nav.slice(3).map((n) => <Link key={n.to} to={n.to} className="eyebrow hidden hover:opacity-60 2xl:block">{n.label}</Link>)}
           <button aria-label="Search" onClick={() => setSearch((s) => !s)}><Search className="h-5 w-5" /></button>
           <Link to="/wishlist" aria-label="Wishlist" className="relative hidden sm:block"><Heart className="h-5 w-5" />{wishlist.length > 0 && <Badge n={wishlist.length} />}</Link>
           <Link to="/cart" aria-label="Bag" className="relative"><ShoppingBag className="h-5 w-5" />{count > 0 && <Badge n={count} />}</Link>
