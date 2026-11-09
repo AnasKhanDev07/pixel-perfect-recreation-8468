@@ -10,6 +10,10 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
+  vite: {
+    // Pre-bundle these with React at startup so a late dependency discovery can't create a second React copy.
+    optimizeDeps: { include: ["framer-motion", "three", "@react-three/fiber", "@react-three/drei"] },
+  },
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this

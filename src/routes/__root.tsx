@@ -10,6 +10,11 @@ import {
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
+import { StoreProvider, useStore } from "../context/store";
+import { Header } from "../components/veltron/Header";
+import { Footer } from "../components/veltron/Footer";
+import { Cursor } from "../components/veltron/Cursor";
+import { AnimatePresence, motion } from "framer-motion";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
@@ -81,20 +86,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "VELTRON — Luxury Men's Trousers" },
+      { name: "description", content: "Precision-cut luxury trousers, jeans and chinos for men." },
+      { property: "og:title", content: "VELTRON — Luxury Men's Trousers" },
+      { property: "og:description", content: "Precision-cut luxury trousers, jeans and chinos for men." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..700;1,400..700&family=Manrope:wght@300..700&display=swap" },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
   }),
@@ -124,7 +130,25 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <StoreProvider>
+        <Cursor />
+        <Header />
+        <main><Outlet /></main>
+        <Footer />
+        <Toast />
+      </StoreProvider>
     </QueryClientProvider>
+  );
+}
+
+function Toast() {
+  const { toast } = useStore();
+  return (
+    <AnimatePresence>
+      {toast && (
+        <motion.div initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 40, opacity: 0 }}
+          className="eyebrow fixed bottom-6 left-1/2 z-[70] -translate-x-1/2 bg-primary px-6 py-4 text-primary-foreground shadow-luxe">{toast}</motion.div>
+      )}
+    </AnimatePresence>
   );
 }

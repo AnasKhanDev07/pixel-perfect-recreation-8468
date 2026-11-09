@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+- Routing uses TanStack Router file routes (never react-router-dom); the brief's page list maps 1:1 to files in src/routes.
+- Cart/wishlist/recently-viewed live in src/context/store.tsx, persisted to localStorage after mount (avoids SSR hydration mismatch).
+- Pricing rules (shipping threshold, promo code) live in src/lib/pricing.ts with tests beside it.
+- The 3D showcase (R3F) is lazy-loaded client-only from the home page.
