@@ -35,7 +35,7 @@ function ProductPage() {
             <AnimatePresence mode="wait">
               <motion.img key={img} src={p.images[img]!} alt={p.name} initial={{ opacity: 0, rotateY: -25 }} animate={spin ? { opacity: 1, rotateY: [0, 360] } : { opacity: 1, rotateY: 0 }} exit={{ opacity: 0, rotateY: 25 }}
                 transition={spin ? { duration: 2.4, ease: "easeInOut" } : { duration: 0.6 }} onAnimationComplete={() => setSpin(false)}
-                className="h-full w-full object-cover transition-transform duration-200" style={zoom ? { transform: "scale(2)", transformOrigin: `${zoom.x}% ${zoom.y}%` } : undefined} />
+                className="h-full w-full object-cover transition-transform duration-200" style={zoom ? { transform: "scale(2)", transformOrigin: `${zoom.x}% ${zoom.y}%` } : {}} />
             </AnimatePresence>
             <button onClick={() => { setSpin(true); let i = 0; const t = setInterval(() => { i++; setImg((v) => (v + 1) % p.images.length); if (i >= p.images.length) clearInterval(t); }, 800); }} className="eyebrow absolute bottom-4 left-4 flex items-center gap-2 glass px-4 py-2 text-[0.6rem]"><RotateCw className="h-3 w-3" /> 360° view</button>
           </div>
